@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Home | Car Mods{% endblock %}
+
+{% block content %}
+<section class="bg-primary text-white py-20">
+    <div class="container mx-auto text-center">
+        <h1 class="text-5xl font-bold mb-4">Transform Your Car, Inside and Out</h1>
+        <p class="text-xl mb-6">Premium interior modifications and exterior cosmetic upgrades for every car enthusiast.</p>
+        <a href="/services/" class="bg-accent text-white px-6 py-3 rounded-lg font-semibold hover:bg-yellow-600 transition">View Our Services</a>
+    </div>
+</section>
+
+<section class="container mx-auto py-16">
+    <h2 class="text-3xl font-bold text-center mb-8">Why Choose Us?</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white p-6 rounded-lg shadow text-center">
+            <h3 class="text-xl font-semibold mb-2">Quality Craftsmanship</h3>
+            <p>Every project is completed with meticulous attention to detail and premium materials.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow text-center">
+            <h3 class="text-xl font-semibold mb-2">Custom Designs</h3>
+            <p>We tailor each modification to fit your style and car’s personality perfectly.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow text-center">
+            <h3 class="text-xl font-semibold mb-2">Affordable Pricing</h3>
+            <p>Premium modifications without breaking the bank. Transparent pricing every step of the way.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}
