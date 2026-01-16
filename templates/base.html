@@ -1,21 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Car Mods{% endblock %}</title>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        accent: '#F52E0B',
+                    }
+                }
+            }
+        }
+    </script>
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body class="bg-gray-100 text-gray-800 font-sans">
     <header class="bg-gray-900 text-white p-4">
         <div class="container mx-auto flex justify-between items-center">
             <h1 class="text-2xl font-bold">Car Mods</h1>
             <nav>
-                <a href="/" class="px-3 hover:underline">Home</a>
-                <a href="/services/" class="px-3 hover:underline">Services</a>
-                <a href="/about/" class="px-3 hover:underline">About</a>
-                <a href="/contact/" class="px-3 hover:underline">Contact</a>
+                <a href="/" class="px-3 {% if request.path == '/' %}underline font-bold{% endif %}">Home</a>
+                <a href="/services/"
+                    class="px-3 {% if '/services/' in request.path %}underline font-bold{% endif %}">Services</a>
+                <a href="/bookings/"
+                    class="px-3 {% if '/bookings/' in request.path %}underline font-bold{% endif %}">Bookings</a>
+                <a href="/contact/"
+                    class="px-3 {% if '/contact/' in request.path %}underline font-bold{% endif %}">Contact</a>
             </nav>
         </div>
     </header>
@@ -26,7 +43,8 @@
     </main>
 
     <footer class="bg-gray-900 text-white p-4 mt-8 text-center">
-        &copy; {{ current_year }} Car Mods. All rights reserved.
+        &copy; {% now "Y" %} Car Mods. All rights reserved.
     </footer>
 </body>
+
 </html>
