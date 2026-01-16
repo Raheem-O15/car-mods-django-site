@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.utils import timezone
 from services.service_layer import get_active_services
 from .forms import ContactForm, BookingForm
 
@@ -26,13 +27,13 @@ def bookings(request):
     if request.method == "POST":
         form = BookingForm(request.POST)
         if form.is_valid():
-            form.save()  # Save to database
-            form = BookingForm()  # Reset form
+            form.save()
             return render(request, "core/bookings.html", {
-                "form": form,
+                "form": BookingForm(),
                 "success": True
             })
     else:
         form = BookingForm()
+        form.fields["date"].widget.attrs["min"] = timezone.now().date()
 
     return render(request, "core/bookings.html", {"form": form})

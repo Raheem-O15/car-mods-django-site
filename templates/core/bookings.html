@@ -7,28 +7,29 @@
     <h2 class="text-3xl font-bold text-center mb-8">Book a Service</h2>
 
     {% if success %}
-        <p class="text-green-600 text-center mb-6">Thank you! Your booking has been received.</p>
+    <p class="text-green-600 text-center mb-6">Thank you! Your booking has been received.</p>
     {% endif %}
 
     <form method="post" class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow space-y-4">
-    {% csrf_token %}
+        {% csrf_token %}
 
-    {% for field in form %}
-        <div>
+        {% for field in form %}
+        <div class="mb-4">
             <label class="block font-semibold mb-1">{{ field.label }}</label>
             {{ field }}
             {% if field.errors %}
-                <p class="text-red-600 text-sm">{{ field.errors }}</p>
+            <p class="text-red-600 text-sm mt-1">{{ field.errors|striptags }}</p>
             {% endif %}
         </div>
-    {% endfor %}
+        {% endfor %}
 
-    <div class="text-center">
-        <button type="submit" class="bg-yellow-500 text-white px-6 py-2 rounded-lg hover:bg-yellow-600 transition">
-            Book Now
-        </button>
-    </div>
-</form>
+
+        <div class="text-center">
+            <button type="submit" class="bg-yellow-500 text-white px-6 py-2 rounded-lg hover:bg-yellow-600 transition">
+                Book Now
+            </button>
+        </div>
+    </form>
 
 
 </section>

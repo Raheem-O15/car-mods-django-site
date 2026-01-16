@@ -1,4 +1,5 @@
 from django import forms
+from django.utils import timezone
 from .models import Booking
 
 
@@ -16,7 +17,11 @@ class ContactForm(forms.Form):
 
 
 class BookingForm(forms.ModelForm):
-    date = forms.DateField(widget=forms.DateInput(attrs={"type": "date", "class": "w-full border rounded p-2"}))
+    date = forms.DateField(
+        widget=forms.DateInput(
+            attrs={"type": "date", "class": "w-full border rounded p-2"}
+        )
+    )
 
     class Meta:
         model = Booking
@@ -26,3 +31,15 @@ class BookingForm(forms.ModelForm):
             "email": forms.EmailInput(attrs={"class": "w-full border rounded p-2"}),
             "service": forms.TextInput(attrs={"class": "w-full border rounded p-2"}),
         }
+
+    def clean_name(self):
+        name = self.cleaned_data["name"].strip()
+        if len(name) < 2:
+            raise forms.ValidationError("Name must be at least 2 characters.")
+        return name
+
+    def clean_date(self):
+        date = self.cleaned_data["date"]
+        if date < timezone.now().date():
+            raise forms.ValidationError("You cannot book a date in the past.")
+        return date
