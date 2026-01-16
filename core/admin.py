@@ -3,6 +3,7 @@ from .models import Booking
 
 @admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
-    list_display = ("name", "email", "service", "date", "created_at")
-    list_filter = ("service", "date")
-    search_fields = ("name", "email", "service")
+    list_display = ("name", "email", "service", "date", "status", "created_at")
+    list_filter = ("status", "service", "date")
+    search_fields = ("name", "email")
+    list_editable = ("status",)  

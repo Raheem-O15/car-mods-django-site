@@ -29,8 +29,21 @@ class BookingForm(forms.ModelForm):
         widgets = {
             "name": forms.TextInput(attrs={"class": "w-full border rounded p-2"}),
             "email": forms.EmailInput(attrs={"class": "w-full border rounded p-2"}),
-            "service": forms.TextInput(attrs={"class": "w-full border rounded p-2"}),
+            "service": forms.Select(attrs={"class": "w-full border rounded p-2"}),
         }
+
+    def clean(self):
+        cleaned_data = super().clean()
+        service = cleaned_data.get("service")
+        date = cleaned_data.get("date")
+
+        if service and date:
+            if Booking.objects.filter(service=service, date=date).exists():
+                raise forms.ValidationError(
+                    "This service is already booked for that date. Please choose another day."
+                )
+
+        return cleaned_data
 
     def clean_name(self):
         name = self.cleaned_data["name"].strip()
