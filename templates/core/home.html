@@ -1,31 +1,96 @@
 {% extends "base.html" %}
 
-{% block title %}Home | Car Mods{% endblock %}
+{% block title %}EO Studios | Performance & Custom Mods{% endblock %}
 
 {% block content %}
-<section class="bg-primary text-white py-20">
-    <div class="container mx-auto text-center">
-        <h1 class="text-5xl font-bold mb-4">Transform Your Car, Inside and Out</h1>
-        <p class="text-xl mb-6">Premium interior modifications and exterior cosmetic upgrades for every car enthusiast.</p>
-        <a href="/services/" class="bg-accent text-white px-6 py-3 rounded-lg font-semibold hover:bg-yellow-600 transition">View Our Services</a>
+
+<!-- HERO -->
+<section class="relative min-h-[85vh] flex items-center justify-center text-center overflow-visible">
+    <div class="absolute inset-0 group flex items-center justify-center">
+        <!-- DARK OVERLAY -->
+        <div class="absolute inset-0 bg-black/50"></div>
+
+        <!-- GLOW -->
+        <div class="absolute inset-x-0 top-[-15%] h-[120%] pointer-events-none z-10 opacity-0 blur-[120px] animate-glowUp">
+            <div class="w-full h-full bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500"></div>
+        </div>
+
+
+
+        <!-- CONTENT -->
+        <div class="relative z-10 max-w-4xl ">
+
+            <div class="bg-black/90 backdrop-blur-xl p-16 rounded-3xl border border-white/5 ">
+
+                <h1 class="text-6xl md:text-7xl font-extrabold tracking-tight mb-6">
+                    EO Studios
+                </h1>
+
+                <p class="text-xl md:text-2xl text-zinc-300 mb-10">
+                    Luxury automotive styling, performance upgrades, and bespoke modifications.
+                </p>
+
+                <div class="flex justify-center gap-6">
+                    <a href="/services/" class="relative px-8 py-3 rounded-lg border border-zinc-500 text-zinc-200
+                        hover:bg-white hover:text-black
+                        shadow hover:shadow-[0_0_20px_rgba(255,255,255,0.3)]
+                        transition-all duration-300 hover:-translate-y-[1px]">
+                        Explore Services
+                    </a>
+
+                    <a href="/bookings/" class="relative px-8 py-3 rounded-lg 
+                        bg-gradient-to-b from-slate-700 to-zinc-900 
+                        text-white font-semibold 
+                        border border-black/70 ring-1 ring-white/10
+
+                        shadow-md 
+                        hover:shadow-[0_0_35px_rgba(255,255,255,0.45)]
+
+                        transition-all duration-300 
+                        hover:-translate-y-[1px]">
+                        Book Now
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
-<section class="container mx-auto py-16">
-    <h2 class="text-3xl font-bold text-center mb-8">Why Choose Us?</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="bg-white p-6 rounded-lg shadow text-center">
-            <h3 class="text-xl font-semibold mb-2">Quality Craftsmanship</h3>
-            <p>Every project is completed with meticulous attention to detail and premium materials.</p>
-        </div>
-        <div class="bg-white p-6 rounded-lg shadow text-center">
-            <h3 class="text-xl font-semibold mb-2">Custom Designs</h3>
-            <p>We tailor each modification to fit your style and car’s personality perfectly.</p>
-        </div>
-        <div class="bg-white p-6 rounded-lg shadow text-center">
-            <h3 class="text-xl font-semibold mb-2">Affordable Pricing</h3>
-            <p>Premium modifications without breaking the bank. Transparent pricing every step of the way.</p>
+
+<!-- ABOUT STRIP -->
+<section class="py-24 text-center max-w-6xl mx-auto bg-black">
+    <h2 class="text-4xl font-bold mb-6">Precision. Style. Performance.</h2>
+    <p class="text-zinc-400 text-lg max-w-3xl mx-auto">
+        EO Studios specialises in premium vehicle modification and styling. From subtle luxury enhancements to full
+        performance builds, we create machines that stand apart.
+    </p>
+</section>
+
+<!-- SERVICES PREVIEW -->
+<section class="py-24 bg-zinc-900">
+    <div class="max-w-7xl mx-auto px-6">
+        <h2 class="text-4xl font-bold text-center mb-16">Our Services</h2>
+
+        <div class="grid md:grid-cols-3 gap-10">
+            {% for service in services %}
+            <div class="bg-black border border-zinc-800 p-8 rounded-xl hover:border-yellow-500 transition">
+                <h3 class="text-2xl font-semibold mb-4">{{ service.name }}</h3>
+                <p class="text-zinc-400 mb-6">{{ service.description|truncatewords:20 }}</p>
+                <p class="text-yellow-500 font-semibold">£{{ service.price }}</p>
+            </div>
+            {% endfor %}
         </div>
     </div>
 </section>
+
+<!-- CTA -->
+<section class="py-32 text-center">
+    <h2 class="text-5xl font-bold mb-6">Ready to Upgrade?</h2>
+    <p class="text-zinc-400 mb-10">Book your consultation with EO Studios today.</p>
+
+    <a href="/bookings/" class="px-10 py-4 bg-yellow-500 text-black text-lg rounded-lg hover:bg-yellow-400 transition">
+        Book Your Build
+    </a>
+</section>
+
 {% endblock %}

@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from services.models import Service
 from django.conf import settings
 from django.utils import timezone
 from services.service_layer import get_active_services
@@ -7,7 +8,8 @@ from django.core.mail import send_mail
 
 
 def home(request):
-    return render(request, "core/home.html")
+    services = Service.objects.all()[:3]
+    return render(request, "core/home.html", {"services": services})
 
 
 def contact(request):

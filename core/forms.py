@@ -26,10 +26,21 @@ class BookingForm(forms.ModelForm):
     class Meta:
         model = Booking
         fields = ["name", "email", "service", "date"]
+
         widgets = {
-            "name": forms.TextInput(attrs={"class": "w-full border rounded p-2"}),
-            "email": forms.EmailInput(attrs={"class": "w-full border rounded p-2"}),
-            "service": forms.Select(attrs={"class": "w-full border rounded p-2"}),
+            "name": forms.TextInput(attrs={
+                "class": "w-full px-3 py-2 rounded border border-zinc-300 text-black placeholder-zinc-400 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition"
+            }),
+            "email": forms.EmailInput(attrs={
+                "class": "w-full px-3 py-2 rounded border border-zinc-300 text-black placeholder-zinc-400 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition"
+            }),
+            "service": forms.Select(attrs={
+                "class": "w-full px-3 py-2 rounded border border-zinc-300 bg-white text-black focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition"
+            }),
+            "date": forms.DateInput(attrs={
+                "type": "date",
+                "class": "w-full px-3 py-2 rounded border border-zinc-300 bg-white text-black focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition"
+            }),
         }
 
     def clean(self):
